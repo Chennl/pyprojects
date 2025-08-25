@@ -1,0 +1,7043 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "bmpqnr-product-v2",
+    "description": "所有接口统一前缀：/product",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://gateway-v2-bmpqnr.app.swiretest.com:5001/product-v2",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "/客户订单限制接口",
+      "description": "业务接口-客户订单限制"
+    },
+    {
+      "name": "/product-key",
+      "description": "产品关系前端接口"
+    },
+    {
+      "name": "产品组接口",
+      "description": "产品组接口"
+    },
+    {
+      "name": "通用接口",
+      "description": "通用接口"
+    },
+    {
+      "name": "/产品分销组产品Item",
+      "description": "产品分销组产品Item前端接口"
+    },
+    {
+      "name": "/客户可售接口",
+      "description": "业务接口-客户可售"
+    },
+    {
+      "name": "/分销接口",
+      "description": "业务接口-分销"
+    }
+  ],
+  "paths": {
+    "/product-group/searchById/{id}": {
+      "get": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询单个产品分组",
+        "operationId": "searchById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询单个产品分组",
+        "operationId": "searchById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/treeListGet": {
+      "get": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "treeListGet",
+        "parameters": [
+          {
+            "name": "arg1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "treeListGet_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wxa/msg_sec_check?access_token={access_token}": {
+      "post": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "msgSecCheck",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SecCheckMsg"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webapi/api/order/pushmsg": {
+      "post": {
+        "tags": [
+          "call-order-msg-api"
+        ],
+        "operationId": "pushMsg",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushMsgDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/productlist/busCompanyProdlistSearch": {
+      "post": {
+        "tags": [
+          "product-list-controllerv-2"
+        ],
+        "summary": "xxx",
+        "description": "厂房分销列表查询",
+        "operationId": "busCompanyProdlistSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/product/searchCompanySaleableProduct": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-产品管理"
+        ],
+        "description": "查询厂房不可售产品",
+        "operationId": "searchCompanySaleableProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/product/searchCompanyNonSaleableProduct": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-产品管理"
+        ],
+        "description": "查询厂房不可售产品",
+        "operationId": "searchCompanyNonSaleableProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/product/busUpdate": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-产品管理"
+        ],
+        "description": "产品修改(创建产品及产品对应的关联信息)",
+        "operationId": "busUpdate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/product/busSearch": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-产品管理"
+        ],
+        "description": "产品查询(创建产品及产品对应的关联信息)",
+        "operationId": "busSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/产品查询参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2.0/product/busCreate": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-产品管理"
+        ],
+        "summary": "产品创建(创建产品及产品对应的关联信息)",
+        "description": "创建产品及产品对应的关联信息；关联对象信息请至对应schemasGet接口获取",
+        "operationId": "busCreate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/v1.0/searchProductList": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "查询新分销列表v1.0",
+        "operationId": "searchProductList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/中心查询分销列表入参"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/update": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "修改分销列表",
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductListUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/updateStatus": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "修改分销分销列表状态",
+        "operationId": "updateStatus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductListUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/searchProductList": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "查询新分销列表",
+        "operationId": "searchProductList_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/分销列表查询实体对象"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/searchParam": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "查询所有分销列表",
+        "operationId": "searchParam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchParam"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/getStoreProductListByCustomerIDList": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "分销列表查询",
+        "operationId": "getStoreProductListByCustomerIDList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/create": {
+      "post": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "添加分销列表",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductListCreateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/syncProductTagItemByCompanyCode": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "根据厂房编号同步产品标签Item",
+        "operationId": "syncProductTagItemByCompanyCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/syncProductGroupByCompanyCode": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "根据厂房编号同步产品组",
+        "operationId": "syncProductGroupByCompanyCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/search": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询所有产品分销组产品Item",
+        "operationId": "search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductitemSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/searchParam": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询所有产品分销组产品Item",
+        "operationId": "searchParam_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchParam"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/getProductItemByCompany": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询厂房分销列表产品",
+        "operationId": "getProductItemByCompany",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/delete": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "删除产品分销组产品Item",
+        "operationId": "delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductItemDeletedDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productitem/createList": {
+      "post": {
+        "tags": [
+          "/产品分销组产品Item"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "批量添加产品分销组产品Item",
+        "operationId": "createList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductItemBatchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-key/delete": {
+      "post": {
+        "tags": [
+          "/product-key"
+        ],
+        "summary": "xxxxxxx",
+        "description": "删除MdSproductkey分组",
+        "operationId": "delete_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdProductkeyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/update": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "修改产品分组",
+        "operationId": "update_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdProductgroupDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/unbinding-product-group": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "解绑产品组中一个产品",
+        "operationId": "unbindingProductGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdProductgroupUnbindDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/unbind-productgroup-search": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询所有产品分组",
+        "operationId": "unbindProductGroupSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductGroupUnboundSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/searchProdGroupProduct": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询产品组产品",
+        "operationId": "searchProdGroupProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchProductGroupDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/search-with-productcounts": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询所有产品分组，包含产品数量",
+        "operationId": "productGroupProductCount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductGroupSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/productGroupTagType2Search": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "查询TagType为2的产品组产品",
+        "operationId": "productGroupTagType2Search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product-group/create": {
+      "post": {
+        "tags": [
+          "产品组接口"
+        ],
+        "summary": "BMP17-API-143",
+        "description": "添加产品分组",
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdProductgroupDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prodcustkeyvalue/search": {
+      "post": {
+        "tags": [
+          "分销Value前端接口"
+        ],
+        "description": "查询所有分销Value",
+        "operationId": "search_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProdcustkeyvalueSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prodcustkeyvalue/delete": {
+      "post": {
+        "tags": [
+          "分销Value前端接口"
+        ],
+        "description": "删除分销Value",
+        "operationId": "delete_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MdProdcustkeyvalueDto"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prodcustkeyvalue/createList": {
+      "post": {
+        "tags": [
+          "分销Value前端接口"
+        ],
+        "description": "批量添加分销Value",
+        "operationId": "createList_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProdcustkeyvalueCreateDto"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prodcust/searchParam": {
+      "post": {
+        "tags": [
+          "分销前端接口"
+        ],
+        "description": "查询所有分销",
+        "operationId": "searchParam_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchParam"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordersalemasteriallist/busSearchWhiteList": {
+      "post": {
+        "tags": [
+          "/客户可售接口"
+        ],
+        "summary": "xxx",
+        "description": "客户白名单产品查询",
+        "operationId": "busSearchWhiteList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordersalemasteriallist/busSearchSalable": {
+      "post": {
+        "tags": [
+          "/客户可售接口"
+        ],
+        "summary": "xxx",
+        "description": "客户可售产品查询",
+        "operationId": "busSearchSalable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordersalemasteriallist/busSearchLKTSalable": {
+      "post": {
+        "tags": [
+          "/客户可售接口"
+        ],
+        "summary": "xxx",
+        "description": "乐客通客户可售产品查询",
+        "operationId": "busSearchLKTSalable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordersalemasteriallist/busSearchLKTBlackList": {
+      "post": {
+        "tags": [
+          "/客户可售接口"
+        ],
+        "summary": "xxx",
+        "description": "客户黑名单产品查询",
+        "operationId": "busSearchLKTBlackList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordersalemasteriallist/busSearchBlackList": {
+      "post": {
+        "tags": [
+          "/客户可售接口"
+        ],
+        "summary": "xxx",
+        "description": "客户黑名单产品查询",
+        "operationId": "busSearchBlackList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orderlimit/busOrderLimitSearch": {
+      "post": {
+        "tags": [
+          "/客户订单限制接口"
+        ],
+        "summary": "xxx",
+        "description": "客户订单上下限值查询",
+        "operationId": "busOrderLimitSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/upset": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "upset",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象修改/新增参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/update": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "update_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象修改参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/updateWithFK": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "updateWithFK",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义修改，创建 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/updateBatch": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "updateBatch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量修改参数集"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/search": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "search_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/searchForGroupBy": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "searchForGroupBy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/searchById": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "searchById_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/object/objectsGet": {
+      "get": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "objectsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "objectsGetForPost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/multipleCreate": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "multipleCreate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义批处理操作 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/listUpdate": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "updateList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量修改参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/listUpdateWithTrans": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "updateListWithTrans",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量修改参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/listUpdateWithFK": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "listUpdateWithFK",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量修改参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/listCreate": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "createList_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量新增参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/object/listCreateWithFK": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "listCreateWithFK",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量新增参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/listCreateBatch": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "createBatchList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象批量新增参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/delete": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "delete_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义删除 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/create": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/对象新增参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/createWithFK": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "createWithFK",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义创建所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/baseSearch": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "baseSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/baseSearchForGroupBy": {
+      "post": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "baseSearchForGroupBy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/search": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询所有产品",
+        "operationId": "search_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/产品数据请求"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchProductByProductCode": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "根据产品编号查询产品",
+        "operationId": "searchProductByProductCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchProductByCode": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "operationId": "searchProductByCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchProductBaseUnit": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "operationId": "searchProductBaseUnit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchOrderMaterialForCompany": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "operationId": "searchOrderMaterialForCompany",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderMaterialForCompanyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchJustBaseProduct": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "产品基础信息 （不推荐使用）",
+        "operationId": "searchJustBaseProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/产品基础数据请求"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/searchByProductListId": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询所有产品绑定分销关系",
+        "operationId": "searchByProductListId",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/产品数据请求"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/queryNotVendibilityList": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询产品可售信息-不可售 黑名单",
+        "operationId": "queryNotVendibilityList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/queryCompanyProduct": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询厂房产品",
+        "operationId": "queryCompanyProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/productSearch": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询产品主数据",
+        "operationId": "searchProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/productSearch-v2": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询产品主数据",
+        "operationId": "searchProductV2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/自定义查询 所用参数"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/fetchProductMasterList": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询设备主数据",
+        "operationId": "fetchProductMasterList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductMasterReqDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/busSearchLKTCompanyProduct": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询全厂可售产品",
+        "operationId": "busSearchLKTCompanyProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/busSearchCompanyProduct": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询全厂可售产品",
+        "operationId": "busSearchCompanyProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/busSearchCompanyProduct-v2": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询全厂可售产品",
+        "operationId": "busSearchCompanyProductV2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/busSearchCompanyEmptyProduct": {
+      "post": {
+        "tags": [
+          "产品中心"
+        ],
+        "description": "查询全厂可售产品",
+        "operationId": "busSearchCompanyEmptyProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdPacksize/search": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-包装前端接口"
+        ],
+        "description": "查询所有包装",
+        "operationId": "search_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdPacksizeDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdCategory/update": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-类目前端接口"
+        ],
+        "description": "修改类目",
+        "operationId": "update_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdCategoryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdCategory/search": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-类目前端接口"
+        ],
+        "description": "查询所有类目",
+        "operationId": "search_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdCategoryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdCategory/create": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-类目前端接口"
+        ],
+        "description": "添加类目",
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdCategoryCreateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdCategory/companyCategorySearch": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-类目前端接口"
+        ],
+        "description": "厂房品类查询",
+        "operationId": "companyCategorySearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdBrand/update": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-品牌前端接口"
+        ],
+        "description": "修改品牌",
+        "operationId": "update_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdBrandDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdBrand/search": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-品牌前端接口"
+        ],
+        "description": "查询所有品牌",
+        "operationId": "search_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdBrandDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdBrand/search-with-productcount": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-品牌前端接口"
+        ],
+        "description": "查询所有品牌及产品数",
+        "operationId": "brandListWithProdCount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdBrandDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdBrand/create": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-品牌前端接口"
+        ],
+        "description": "添加品牌",
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MdBrandDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdBrand/companyBrandSearch": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-品牌前端接口"
+        ],
+        "description": "厂房品牌查询",
+        "operationId": "companyBrandSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dss/dssSubmitOrder": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-DSS"
+        ],
+        "description": "DSS订单提交",
+        "operationId": "dssSubmitOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dss/dssPriceCalculate": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-DSS"
+        ],
+        "description": "DSS价格计算",
+        "operationId": "getDssDiscountPrice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dss/dssCommunicationPriceSearch": {
+      "post": {
+        "tags": [
+          "产品中心-业务接口-DSS"
+        ],
+        "description": "DSS查询沟通价",
+        "operationId": "dssCommunicationPriceSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companyEmptyProduct/companyEmptyProductUpdate": {
+      "post": {
+        "tags": [
+          "业务接口-厂房空容器产品管理"
+        ],
+        "description": "厂房空容器产品修改",
+        "operationId": "companyEmptyProductUpdate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductObjectUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companyEmptyProduct/companyEmptyProductSearch": {
+      "post": {
+        "tags": [
+          "业务接口-厂房空容器产品管理"
+        ],
+        "description": "厂房空容器产品查询",
+        "operationId": "companyEmptyProductSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductObjectSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companyEmptyProduct/companyEmptyProductDeleteBatchList": {
+      "post": {
+        "tags": [
+          "业务接口-厂房空容器产品管理"
+        ],
+        "description": "厂房空容器产品批量逻辑删除",
+        "operationId": "companyEmptyProductDeleteBatchList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductObjectUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companyEmptyProduct/companyEmptyProductCreateBatchList": {
+      "post": {
+        "tags": [
+          "业务接口-厂房空容器产品管理"
+        ],
+        "description": "厂房空容器产品批量新增",
+        "operationId": "companyEmptyProductCreateBatchList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductObjectCreateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companyEmptyProduct/busCompanyEmptyProductSearch": {
+      "post": {
+        "tags": [
+          "业务接口-厂房空容器产品管理"
+        ],
+        "description": "厂房空容器产品Bus查询",
+        "operationId": "busCompanyEmptyProductSearch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductObjectSearchDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/media/uploadimg": {
+      "post": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "sendMessage",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arg1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sns/userinfo": {
+      "get": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "getWxWebUserInfo",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "openid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sns/oauth2/refresh_token": {
+      "get": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "getWxWebReFreshToken",
+        "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refresh_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sns/oauth2/access_token": {
+      "get": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "getWxWebToken",
+        "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "secret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sns/jscode2session": {
+      "get": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "getWxMiniSession",
+        "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "secret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "js_code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productlist/searchById/{id}": {
+      "get": {
+        "tags": [
+          "/分销接口"
+        ],
+        "summary": "xxxxxxx",
+        "description": "查询单个分销列表",
+        "operationId": "searchById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/schemasGet/{objectName}": {
+      "get": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "schemasGet",
+        "parameters": [
+          {
+            "name": "objectName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/object/dropdownListGet": {
+      "get": {
+        "tags": [
+          "通用接口"
+        ],
+        "operationId": "dropdownListGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mdProduct/refreshPackageSizeCache": {
+      "get": {
+        "tags": [
+          "产品中心"
+        ],
+        "operationId": "manualRefresh",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/响应参数(带分页)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/token": {
+      "get": {
+        "tags": [
+          "call-wx-api"
+        ],
+        "operationId": "getWxMiniToken",
+        "parameters": [
+          {
+            "name": "appid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "secret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/service/miniprogram/jscode2session": {
+      "get": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "getQwSuiteSession",
+        "parameters": [
+          {
+            "name": "suite_access_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "js_code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/service/get_suite_token": {
+      "get": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "getQwSuiteToken",
+        "parameters": [
+          {
+            "name": "suite_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "suite_secret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "suite_ticket",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/miniprogram/jscode2session": {
+      "get": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "getQwSession",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "grant_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "js_code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/message/send": {
+      "get": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "sendMessage_1",
+        "parameters": [
+          {
+            "name": "access_token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arg1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/QWMsgDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cgi-bin/gettoken": {
+      "get": {
+        "tags": [
+          "call-qw-api"
+        ],
+        "operationId": "getQwToken",
+        "parameters": [
+          {
+            "name": "corpid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "corpsecret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/IdentityService/api/auth/gettoken": {
+      "get": {
+        "tags": [
+          "call-order-msg-api"
+        ],
+        "operationId": "getToken",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client_secret",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JSONObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/APIService/enterprise/getBasicInfo": {
+      "get": {
+        "tags": [
+          "call-qi-xin-api"
+        ],
+        "operationId": "getBasicInfo",
+        "parameters": [
+          {
+            "name": "Auth-Version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "appkey",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sign",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FileSyncDto": {
+        "type": "object",
+        "properties": {
+          "租户ID": {
+            "type": "string"
+          },
+          "上传的文件数据": {
+            "type": "string"
+          },
+          "原文件名": {
+            "type": "string"
+          },
+          "业务图片类型（参照字典表AttachType）": {
+            "type": "string",
+            "description": "业务类型（\nPhotoType\t1\t门头\nPhotoType\t2\t排面\nPhotoType\t3\t价签\nPhotoType\t4\t堆头\nPhotoType\t5\t促销）\n6,门店，7，品牌log"
+          },
+          "文件大小(fileData.length)": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "文件名": {
+            "type": "string"
+          },
+          "文件后缀（图片:.jpg,文件:.txt）": {
+            "type": "string"
+          },
+          "文字水印（格式：日期 职位 业代名称）": {
+            "type": "string"
+          },
+          "创建者": {
+            "type": "string"
+          },
+          "经度，用于解析地址": {
+            "type": "number",
+            "format": "double"
+          },
+          "纬度，用于解析地址": {
+            "type": "number",
+            "format": "double"
+          },
+          "图片拍摄地址": {
+            "type": "string"
+          },
+          "表名": {
+            "type": "string"
+          },
+          "厂房编号": {
+            "type": "string"
+          }
+        },
+        "description": "文件上传Dto实体"
+      },
+      "MdProductCategoryEntity": {
+        "type": "object",
+        "properties": {
+          "pkID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productID": {
+            "type": "string"
+          },
+          "categoryID": {
+            "type": "string"
+          },
+          "categoryNameCn": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          }
+        }
+      },
+      "MdProductgroupDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/产品数据请求"
+            }
+          },
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productKeyID": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          },
+          "productCheckeds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductChecked"
+            }
+          }
+        }
+      },
+      "MdProductuomDto": {
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productIdList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceUom": {
+            "type": "string"
+          },
+          "targetUom": {
+            "type": "string"
+          },
+          "defaultUom": {
+            "type": "string"
+          },
+          "denominator": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "bigUnitPrice": {
+            "type": "number"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "asc": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Pagenation": {
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ProductChecked": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "isChecked": {
+            "type": "string"
+          }
+        }
+      },
+      "产品数据请求": {
+        "required": [
+          "id",
+          "中文简称",
+          "产品编码"
+        ],
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "objectName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "选中ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品编码": {
+            "type": "string"
+          },
+          "产品类型": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "条形码": {
+            "type": "string"
+          },
+          "中文简称": {
+            "type": "string"
+          },
+          "英文简称": {
+            "type": "string"
+          },
+          "是否赠品 1:是赠品 0:不是赠品": {
+            "type": "string"
+          },
+          "shortNameCn": {
+            "type": "string"
+          },
+          "shortNameEn": {
+            "type": "string"
+          },
+          "packSizeID": {
+            "type": "string"
+          },
+          "packSizeNameCn": {
+            "type": "string"
+          },
+          "packSizeNameEn": {
+            "type": "string"
+          },
+          "categoryID": {
+            "type": "string"
+          },
+          "categoryIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productGroupIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "brandIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "packSizeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productListID": {
+            "type": "string"
+          },
+          "categoryNameCn": {
+            "type": "string"
+          },
+          "categoryNameEn": {
+            "type": "string"
+          },
+          "brandID": {
+            "type": "string"
+          },
+          "brandNameCn": {
+            "type": "string"
+          },
+          "brandNameEn": {
+            "type": "string"
+          },
+          "subBrandID": {
+            "type": "string"
+          },
+          "baseUomCode": {
+            "type": "string"
+          },
+          "baseUomPrice": {
+            "type": "number"
+          },
+          "denominator": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eaUnitPrice": {
+            "type": "number"
+          },
+          "csUnitPrice": {
+            "type": "number"
+          },
+          "eaName": {
+            "type": "string"
+          },
+          "csName": {
+            "type": "string"
+          },
+          "defaultUom": {
+            "type": "string"
+          },
+          "madeIn": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          },
+          "weightUnit": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "number"
+          },
+          "volumeUnit": {
+            "type": "string"
+          },
+          "launchYear": {
+            "type": "string"
+          },
+          "shelfLife": {
+            "type": "string"
+          },
+          "teu": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "expDay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "lengthInCS": {
+            "type": "number"
+          },
+          "widthInCS": {
+            "type": "number"
+          },
+          "heightInCS": {
+            "type": "number"
+          },
+          "volumeInCS": {
+            "type": "number"
+          },
+          "grossWeightInCS": {
+            "type": "number"
+          },
+          "volumeInBUN": {
+            "type": "number"
+          },
+          "grossWeightInBUN": {
+            "type": "number"
+          },
+          "netWeightInBUN": {
+            "type": "number"
+          },
+          "factorInNL": {
+            "type": "number"
+          },
+          "volumeInNL": {
+            "type": "number"
+          },
+          "deliveringPlant": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "codeOrName": {
+            "type": "string"
+          },
+          "buCode": {
+            "type": "string"
+          },
+          "retailPrice": {
+            "type": "string"
+          },
+          "largePhoto": {
+            "type": "string"
+          },
+          "thumbnailPhoto": {
+            "type": "string"
+          },
+          "thumbnailPhotoUrl": {
+            "type": "string"
+          },
+          "detailPagePhoto": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "fileSyncDto": {
+            "$ref": "#/components/schemas/FileSyncDto"
+          },
+          "picUrl": {
+            "type": "string"
+          },
+          "freightType": {
+            "type": "string"
+          },
+          "isPhoto": {
+            "type": "string"
+          },
+          "vendorName": {
+            "type": "string"
+          },
+          "marketPrice": {
+            "type": "string"
+          },
+          "stockNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salesVolume": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productuomDto": {
+            "$ref": "#/components/schemas/MdProductuomDto"
+          },
+          "categoryList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MdProductCategoryEntity"
+            }
+          },
+          "产品组ID": {
+            "type": "string"
+          },
+          "产品组描述": {
+            "type": "string"
+          },
+          "是否选择": {
+            "type": "string"
+          },
+          "产品ID": {
+            "type": "string"
+          },
+          "起订倍数/下单基数": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "'Quota剩余额度": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "'Quota总额": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "'Quota已用额度": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Quota起始日期": {
+            "type": "string"
+          },
+          "Quota截止日期": {
+            "type": "string"
+          },
+          "配额QuotaID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "'库存数量": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isBulk": {
+            "type": "string"
+          },
+          "isNewSKU": {
+            "type": "string"
+          },
+          "uomofVolumeInCS": {
+            "type": "number"
+          },
+          "uomofVolumeInBUN": {
+            "type": "string"
+          },
+          "uomofVolumeinNL": {
+            "type": "string"
+          }
+        }
+      },
+      "响应参数(带分页)": {
+        "type": "object",
+        "properties": {
+          "返回数据的总行数": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "返回的代码": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "返回的错误消息": {
+            "type": "string"
+          },
+          "返回的实体对象": {
+            "$ref": "#/components/schemas/MdProductgroupDto"
+          },
+          "page": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          },
+          "ipage": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          },
+          "ipageTow": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          }
+        },
+        "description": "响应参数(带分页)"
+      },
+      "响应参数(带分页)MdProductgroupDto": {
+        "type": "object",
+        "properties": {
+          "返回数据的总行数": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "返回的代码": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "返回的错误消息": {
+            "type": "string"
+          },
+          "返回的实体对象": {
+            "$ref": "#/components/schemas/MdProductgroupDto"
+          },
+          "page": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          },
+          "ipage": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          },
+          "ipageTow": {
+            "$ref": "#/components/schemas/响应参数(带分页)MdProductgroupDto"
+          }
+        },
+        "description": "响应参数(带分页)"
+      },
+      "SecCheckMsg": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "JSONObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "innerMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "additionalProperties": {
+          "type": "object"
+        }
+      },
+      "PushMsgDto": {
+        "type": "object",
+        "properties": {
+          "userCode": {
+            "type": "string"
+          },
+          "customerCode": {
+            "type": "string"
+          },
+          "orderNo": {
+            "type": "string"
+          },
+          "orderStatus": {
+            "type": "string"
+          },
+          "extend": {
+            "type": "string"
+          },
+          "updateTime": {
+            "type": "string"
+          }
+        }
+      },
+      "Condition": {
+        "type": "object",
+        "properties": {
+          "列名": {
+            "type": "string"
+          },
+          "函数使用": {
+            "type": "string"
+          },
+          "值": {
+            "type": "object"
+          },
+          "条件（eq：等于=，ne：不等于\u003C\u003E，gt：大于\u003E，ge：大于等于\u003E=，lt：小于\u003C，le：小于等于\u003C=，like：模糊查询，like_left：左模糊查询，like_right：右模糊查询，in：IN查询，not_in：NOTIN查询，is_null：NULL值查询，is_not_null：非NULL值查询，between：BETWEEN条件查询）": {
+            "type": "string"
+          },
+          "多值": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "分组": {
+            "type": "string"
+          }
+        }
+      },
+      "Sort": {
+        "type": "object",
+        "properties": {
+          "列名": {
+            "type": "string",
+            "example": "LastModifiedTime"
+          },
+          "是否正序": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "自定义查询 所用参数": {
+        "required": [
+          "表名"
+        ],
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "筛选条件组内的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "分页参数": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "返回列": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "是否去重": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "产品查询参数": {
+        "required": [
+          "表名"
+        ],
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "筛选条件组内的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "分页参数": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "返回列": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "是否去重": {
+            "type": "boolean",
+            "example": false
+          },
+          "产品组筛选条件，结构同conditionField（可用参数 /product/object/schemasGet/md_productgroup）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "产品单位筛选条件，结构同conditionField（可用参数 /product/object/schemasGet/md_productuom）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "厂房可售查询条件 同conditionField结构一致 /store/object/md_companyproduct": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          }
+        }
+      },
+      "中心查询分销列表入参": {
+        "required": [
+          "表名"
+        ],
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "筛选条件组内的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "分页参数": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "返回列": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "是否去重": {
+            "type": "boolean",
+            "example": false
+          },
+          "分销列表Id": {
+            "type": "string"
+          },
+          "分销列表Id List": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "类目集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品组集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "品牌组集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customerKeyID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "门店Id": {
+            "type": "string"
+          },
+          "分销状态": {
+            "type": "string"
+          },
+          "isBulk": {
+            "type": "string"
+          },
+          "deployTypeList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nameOrCode": {
+            "type": "string"
+          },
+          "dateFrom": {
+            "type": "string"
+          },
+          "dateTo": {
+            "type": "string"
+          },
+          "厂房编号": {
+            "type": "string"
+          },
+          "plistType": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductItemCreateDto": {
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "分销ID": {
+            "type": "string"
+          },
+          "产品ID": {
+            "type": "string"
+          },
+          "是否必销": {
+            "type": "string"
+          },
+          "新品": {
+            "type": "string"
+          },
+          "收银台": {
+            "type": "string"
+          },
+          "序号": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "折扣价格": {
+            "type": "number"
+          },
+          "成本价": {
+            "type": "number"
+          },
+          "所有者": {
+            "type": "string"
+          },
+          "创建人": {
+            "type": "string"
+          },
+          "创建日期": {
+            "type": "string"
+          },
+          "修改人": {
+            "type": "string"
+          },
+          "修改日期": {
+            "type": "string"
+          },
+          "门店类型": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ProductListUpdateDto": {
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "分销组ID": {
+            "type": "string",
+            "description": "修改对象使用"
+          },
+          "分销组名": {
+            "type": "string"
+          },
+          "关联门店Key": {
+            "type": "string"
+          },
+          "关联产品key": {
+            "type": "string"
+          },
+          "有效期开始时间": {
+            "type": "string"
+          },
+          "有效期结束时间": {
+            "type": "string"
+          },
+          "deployType": {
+            "type": "string"
+          },
+          "bingDingOrg": {
+            "type": "string"
+          },
+          "分销状态（1：停用，0：启用）": {
+            "type": "string"
+          },
+          "所有者": {
+            "type": "string"
+          },
+          "修改人": {
+            "type": "string"
+          },
+          "修改日期": {
+            "type": "string"
+          },
+          "分销产品ID集合": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductItemCreateDto"
+            }
+          },
+          "分销门店组ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "removeCustomer": {
+            "type": "string"
+          },
+          "plistType": {
+            "type": "string"
+          }
+        }
+      },
+      "分销列表查询实体对象": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "分销列表Id": {
+            "type": "string",
+            "description": "查询单个分销时使用"
+          },
+          "分销列表Id List": {
+            "type": "array",
+            "description": "查询多个分销时使用",
+            "items": {
+              "type": "string",
+              "description": "查询多个分销时使用"
+            }
+          },
+          "类目集合": {
+            "type": "array",
+            "description": "查询单个分销时使用",
+            "items": {
+              "type": "string",
+              "description": "查询单个分销时使用"
+            }
+          },
+          "产品组集合": {
+            "type": "array",
+            "description": "查询单个分销时使用",
+            "items": {
+              "type": "string",
+              "description": "查询单个分销时使用"
+            }
+          },
+          "品牌组集合": {
+            "type": "array",
+            "description": "查询单个分销时使用",
+            "items": {
+              "type": "string",
+              "description": "查询单个分销时使用"
+            }
+          },
+          "customerKeyID集合": {
+            "type": "array",
+            "description": "查询分销列表和门店的关系时使用",
+            "items": {
+              "type": "string",
+              "description": "查询分销列表和门店的关系时使用"
+            }
+          },
+          "门店Id": {
+            "type": "string",
+            "description": "查询门店分布通过ID查询分销列表时使用"
+          },
+          "分销状态": {
+            "type": "string",
+            "description": "查询分销列表时筛选使用"
+          },
+          "isBulk": {
+            "type": "string"
+          },
+          "deployTypeList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nameOrCode": {
+            "type": "string"
+          },
+          "dateFrom": {
+            "type": "string"
+          },
+          "dateTo": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchItem": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          },
+          "value2": {
+            "type": "object"
+          }
+        }
+      },
+      "SearchParam": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "objectName": {
+            "type": "string"
+          },
+          "searchItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchItem"
+            }
+          },
+          "nestedSearchItems": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchItem"
+              }
+            }
+          }
+        }
+      },
+      "ProductListCreateDto": {
+        "required": [
+          "修改人",
+          "修改日期",
+          "关联产品key",
+          "关联门店Key",
+          "分销状态（1：停用，0：启用）",
+          "分销组Code",
+          "分销组ID",
+          "分销组名",
+          "创建人",
+          "创建日期",
+          "发布类型",
+          "有效期开始时间",
+          "有效期结束时间",
+          "绑定架构"
+        ],
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "分销组ID": {
+            "type": "string"
+          },
+          "分销组Code": {
+            "type": "string"
+          },
+          "分销组名": {
+            "type": "string"
+          },
+          "关联门店Key": {
+            "type": "string"
+          },
+          "关联产品key": {
+            "type": "string"
+          },
+          "发布类型": {
+            "type": "string"
+          },
+          "绑定架构": {
+            "type": "string"
+          },
+          "有效期开始时间": {
+            "type": "string"
+          },
+          "有效期结束时间": {
+            "type": "string"
+          },
+          "分销状态（1：停用，0：启用）": {
+            "type": "string"
+          },
+          "所有者": {
+            "type": "string"
+          },
+          "创建人": {
+            "type": "string"
+          },
+          "创建日期": {
+            "type": "string"
+          },
+          "修改人": {
+            "type": "string"
+          },
+          "修改日期": {
+            "type": "string"
+          },
+          "分销产品ID集合": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductItemCreateDto"
+            }
+          },
+          "分销门店组ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "厂房编号": {
+            "type": "string"
+          },
+          "customerKeyMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "cityID": {
+            "type": "string"
+          },
+          "orgID": {
+            "type": "string"
+          },
+          "排除条件": {
+            "type": "string"
+          },
+          "plistType": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductitemSearchDto": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "productListID": {
+            "type": "string"
+          },
+          "productListIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productID": {
+            "type": "string"
+          },
+          "productIDList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isMustSKU": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductItemDeletedDto": {
+        "type": "object",
+        "properties": {
+          "分销ID": {
+            "type": "string"
+          },
+          "产品ID": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductItemBatchDto": {
+        "type": "object",
+        "properties": {
+          "批量集合对象处理": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductItemCreateDto"
+            }
+          }
+        },
+        "description": "批量产品分销关联对象"
+      },
+      "MdProductkeyDto": {
+        "type": "object",
+        "properties": {
+          "keyId": {
+            "type": "string"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productId": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          }
+        }
+      },
+      "MdProductgroupUnbindDto": {
+        "type": "object",
+        "properties": {
+          "groupID": {
+            "type": "string"
+          },
+          "productKeyID": {
+            "type": "string"
+          },
+          "productID": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductGroupUnboundSearchDto": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchProductGroupDto": {
+        "required": [
+          "表名"
+        ],
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "筛选条件组内的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "分页参数": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "返回列": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "是否去重": {
+            "type": "boolean",
+            "example": false
+          },
+          "产品名称或编号": {
+            "type": "string"
+          },
+          "品牌ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "品类ID集合": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "包装ID集合": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "容量范围": {
+            "type": "string"
+          },
+          "包装大小ID": {
+            "type": "string"
+          },
+          "产品ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "厂房编号": {
+            "type": "string"
+          },
+          "keyId": {
+            "type": "string"
+          },
+          "是否删除": {
+            "type": "string"
+          },
+          "当前页": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页容量": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ProductGroupSearchDto": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "productGroupIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productKeyIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ProdcustkeyvalueSearchDto": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "keyId": {
+            "type": "string"
+          },
+          "keyValues": {
+            "type": "string"
+          },
+          "typeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "keyValuesList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MdProdcustkeyvalueDto": {
+        "type": "object",
+        "properties": {
+          "当前页，当前页是第几页，默认1": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "每页显示条数，默认10": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "keyId": {
+            "type": "string"
+          },
+          "keyValues": {
+            "type": "string"
+          },
+          "keyValuesList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "ProdcustkeyvalueCreateDto": {
+        "type": "object",
+        "properties": {
+          "keyId": {
+            "type": "string"
+          },
+          "keyValues": {
+            "type": "string"
+          },
+          "typeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "厂房编号": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          }
+        }
+      },
+      "对象修改参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 修改操作， 表示 用于对比 的字段": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "自定义修改，创建 所用参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 修改操作， 表示 用于对比 的字段": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "对象批量修改参数集": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          }
+        }
+      },
+      "自定义批处理操作 所用参数": {
+        "type": "object",
+        "properties": {
+          "多个insert/update操作集合": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/自定义修改，创建 所用参数"
+            }
+          }
+        }
+      },
+      "对象批量修改参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 修改操作， 表示 用于对比 的字段": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "对象批量新增参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "自定义删除 所用参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string"
+          }
+        }
+      },
+      "对象新增参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "自定义创建所用参数": {
+        "type": "object",
+        "properties": {
+          "表名": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        }
+      },
+      "OrderMaterialForCompanyRequest": {
+        "type": "object",
+        "properties": {
+          "companyCode": {
+            "title": "厂房",
+            "type": "string"
+          }
+        }
+      },
+      "产品基础数据请求": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "是否被删除": {
+            "type": "string"
+          },
+          "产品ID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "选中产品ID": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品编号名称": {
+            "type": "string"
+          },
+          "条形码": {
+            "type": "string"
+          },
+          "类目": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "品牌": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品组": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品类型": {
+            "type": "string"
+          },
+          "是否赠品": {
+            "type": "string"
+          },
+          "集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "分销id集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ProductMasterReqDTO": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          }
+        }
+      },
+      "MdPacksizeDto": {
+        "required": [
+          "nameCn"
+        ],
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameCn": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "MdCategoryDto": {
+        "required": [
+          "code",
+          "nameCn"
+        ],
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "门店ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "产品ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "选中ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameCn": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "memo": {
+            "type": "string"
+          },
+          "parentID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          },
+          "categoryList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MdCategoryDto"
+            }
+          }
+        }
+      },
+      "MdCategoryCreateDto": {
+        "required": [
+          "code",
+          "nameCn"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameCn": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "memo": {
+            "type": "string"
+          },
+          "parentID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "level": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          },
+          "categoryList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MdCategoryCreateDto"
+            }
+          }
+        }
+      },
+      "MdBrandDto": {
+        "required": [
+          "code",
+          "id",
+          "nameCn"
+        ],
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "选中ID集合": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "code": {
+            "type": "string"
+          },
+          "nameCn": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          },
+          "categoryID": {
+            "type": "string"
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isCompetitive": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "fileSyncDto": {
+            "$ref": "#/components/schemas/FileSyncDto"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderDto": {
+        "type": "object",
+        "properties": {
+          "模糊检索条件": {
+            "type": "string"
+          },
+          "分页信息": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序信息": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          },
+          "查询者 （实际值为 UserId）": {
+            "type": "string"
+          },
+          "用户组织架构，用于权限控制": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isWithOtherInfo": {
+            "type": "string"
+          },
+          "orderNo": {
+            "type": "string"
+          },
+          "Nav订单号": {
+            "type": "string"
+          },
+          "visitID": {
+            "type": "string"
+          },
+          "用户ID": {
+            "type": "string",
+            "description": "下单时记录门店当下业代用户ID"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "customerID": {
+            "type": "string"
+          },
+          "销售用户ID": {
+            "type": "string",
+            "description": "下单时记录门店业代（销售）信息ID"
+          },
+          "customerCode": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "customerIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "orgIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "distributorID": {
+            "type": "string"
+          },
+          "orderDate": {
+            "type": "string"
+          },
+          "orderType": {
+            "type": "string"
+          },
+          "orderSource": {
+            "type": "string"
+          },
+          "orderTarget": {
+            "type": "string"
+          },
+          "orderStatus": {
+            "type": "string"
+          },
+          "reqDeliverDate": {
+            "type": "string"
+          },
+          "deliverDate": {
+            "type": "string"
+          },
+          "应付价格": {
+            "type": "number"
+          },
+          "totalNPSPrice": {
+            "type": "number"
+          },
+          "配送价格": {
+            "type": "number"
+          },
+          "deliverNPSPrice": {
+            "type": "number"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "picCustSignOff": {
+            "type": "string"
+          },
+          "原价": {
+            "type": "number"
+          },
+          "满减满折，优惠券": {
+            "type": "number"
+          },
+          "支付方法": {
+            "type": "string"
+          },
+          "shipToCode": {
+            "type": "string"
+          },
+          "accountSet": {
+            "type": "string"
+          },
+          "公司（账套全称）": {
+            "type": "string"
+          },
+          "客户所属渠道": {
+            "type": "string"
+          },
+          "返利优惠": {
+            "type": "number"
+          },
+          "discountAmount": {
+            "type": "number"
+          },
+          "在线折扣金额": {
+            "type": "number"
+          },
+          "合计后补折扣": {
+            "type": "number"
+          },
+          "满减总额": {
+            "type": "number"
+          },
+          "赠品优惠总额（满赠优惠的赠品的优惠额）": {
+            "type": "number"
+          },
+          "联系人姓名": {
+            "type": "string"
+          },
+          "收货地址": {
+            "type": "string"
+          },
+          "修改原因": {
+            "type": "string"
+          },
+          "修改备注": {
+            "type": "string"
+          },
+          "modeType": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          },
+          "dateFrom": {
+            "type": "string"
+          },
+          "dateTo": {
+            "type": "string"
+          },
+          "orderLineDtos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderLineDto"
+            }
+          },
+          "orderPricingRecordList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderPricingRecordEntity对象"
+            }
+          },
+          "支付流水号": {
+            "type": "string"
+          },
+          "支付状态": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "取消原因": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "下单人手机号": {
+            "type": "string"
+          },
+          "isCheckOrder": {
+            "type": "string"
+          },
+          "修改后价格(实付价格)": {
+            "type": "number"
+          },
+          "是否全赠品订单": {
+            "type": "string"
+          },
+          "是否预付款订单": {
+            "type": "string"
+          },
+          "直发审批状态": {
+            "type": "string"
+          },
+          "总数量": {
+            "type": "string"
+          },
+          "排单留言": {
+            "type": "string"
+          },
+          "司机留言": {
+            "type": "string"
+          },
+          "路线号": {
+            "type": "string"
+          },
+          "出货工厂": {
+            "type": "string"
+          },
+          "tranCode": {
+            "type": "string"
+          },
+          "公司代码": {
+            "type": "string"
+          },
+          "shipToName": {
+            "type": "string"
+          },
+          "soldToCode": {
+            "type": "string"
+          },
+          "soldToName": {
+            "type": "string"
+          },
+          "KA订单编号": {
+            "type": "string"
+          },
+          "新增订单 1/ 修改订单 3": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sbirejectReason": {
+            "type": "string"
+          },
+          "partnerCode": {
+            "type": "string"
+          },
+          "callingDate": {
+            "type": "string"
+          },
+          "sourceOrderNo": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderLineDto": {
+        "type": "object",
+        "properties": {
+          "orderNo": {
+            "type": "string"
+          },
+          "detailNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "产品类型": {
+            "type": "string"
+          },
+          "uomCode": {
+            "type": "string"
+          },
+          "uomType": {
+            "type": "string"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "unitNPSPrice": {
+            "type": "number"
+          },
+          "deliverUnitPrice": {
+            "type": "number"
+          },
+          "orderQty": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "deliverQty": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "itemPrice": {
+            "type": "number"
+          },
+          "itemNPSPrice": {
+            "type": "number"
+          },
+          "itemNetPrice": {
+            "type": "number"
+          },
+          "deliverItemPrice": {
+            "type": "number"
+          },
+          "deliverItemNPSPrice": {
+            "type": "number"
+          },
+          "promotionID": {
+            "type": "string"
+          },
+          "promotionDesc": {
+            "type": "string"
+          },
+          "ownProductID": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "createTime": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          },
+          "是否赠品 (来自产品表的值)": {
+            "type": "string"
+          },
+          "是否赠品 1:是 0:否 (来自价格引擎的值)": {
+            "type": "string"
+          },
+          "isMustSKU": {
+            "type": "string"
+          },
+          "配额 QuotaID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "物料配额 QuotaID": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cancelReason": {
+            "type": "string"
+          },
+          "套餐ID": {
+            "type": "string"
+          },
+          "套餐编码": {
+            "type": "string"
+          },
+          "套餐名称": {
+            "type": "string"
+          },
+          "套餐数量": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "套餐价格": {
+            "type": "number"
+          },
+          "套餐折后价": {
+            "type": "number"
+          },
+          "套餐最终价": {
+            "type": "number"
+          },
+          "recordId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "denominator": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordRef": {
+            "type": "string"
+          },
+          "isSuggest": {
+            "type": "string"
+          },
+          "tranCode": {
+            "type": "string"
+          },
+          "sapOrderNo": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderPricingRecordEntity对象": {
+        "type": "object",
+        "properties": {
+          "主键": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "订单号": {
+            "type": "string"
+          },
+          "优惠券分组": {
+            "type": "string"
+          },
+          "recordId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "优惠券类别": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "优惠金额": {
+            "type": "number"
+          },
+          "isDeleted": {
+            "type": "string"
+          },
+          "ownerID": {
+            "type": "string"
+          },
+          "createBy": {
+            "type": "string"
+          },
+          "创建时间": {
+            "type": "string"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModifiedTime": {
+            "type": "string"
+          }
+        },
+        "description": "订单优惠券使用记录表"
+      },
+      "ProductObjectUpdateDto": {
+        "type": "object",
+        "properties": {
+          "用于 修改操作， 表示 用于对比 的字段": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        },
+        "description": "厂房空容器产品批量逻辑删除请求参数"
+      },
+      "ProductObjectSearchDto": {
+        "type": "object",
+        "properties": {
+          "筛选条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "筛选条件之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "筛选条件组内的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "分页参数": {
+            "$ref": "#/components/schemas/Pagenation"
+          },
+          "排序": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sort"
+            }
+          },
+          "返回列": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "厂房空容器产品Bus查询请求参数"
+      },
+      "ProductObjectCreateDto": {
+        "type": "object",
+        "properties": {
+          "用于 修改操作， 表示 用于对比 的字段": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "用于 新增操作， 标识 key": {
+            "type": "string"
+          },
+          "用于 新增操作， 标识 key 生成方式": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "批量更新条件，（可用参数 /{serviceName}/object/schemasGet/{objectName}）": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "用于 单个新增，修改操作， 接收参数": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "用于 批量新增，修改操作， 接收参数": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "修改参数keyList之间的关系（or或，and并，默认and）": {
+            "type": "string",
+            "example": "and"
+          },
+          "处理标记(insert/update)": {
+            "type": "string",
+            "example": "insert"
+          }
+        },
+        "description": "厂房空容器产品批量新增请求参数"
+      },
+      "QWMsgDto": {
+        "type": "object",
+        "properties": {
+          "msgtype": {
+            "type": "string"
+          },
+          "agentid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "safe": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enable_duplicate_check": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "duplicate_check_interval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "touser": {
+            "type": "string"
+          },
+          "toparty": {
+            "type": "string"
+          },
+          "totag": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
